@@ -6,3 +6,8 @@
 #### change the file names as it takes input from a file and dynamically makes a file and print the output 
 
 
+
+### program change log 1.1 
+#### fixed bugs causing erroes 
+#### runs with pre declared file name "test_cases.txt " 
+#### some bugs causing uncertain output will be dealt with in the next version 
