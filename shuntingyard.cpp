@@ -15,11 +15,11 @@ int precedence(char op){
  
 int applyOp(int a, int b, char op){
     switch(op){
-        case '+': return a + b;
-        case '-': return a - b;
-        case '*': return a * b;
-        case '/': return a / b;
-        case '^': return pow(a,b);
+        case '+':return a + b;
+        case '-':return a - b;
+        case '*':return a * b;
+        case '/':return a / b;
+        case '^':return pow(a,b);
         // case 'x': return 
         
             }
@@ -53,38 +53,47 @@ int equivalent(string tokens){
         }
           else if(tokens[i]=='x')
         {
+
              int val3;
+           
              val3=values.top();
              values.pop();
-             tokens[i]='2';
+             tokens[i]='3';
             int cat;
             cat=(int)tokens[i]-48;
+            // cout<<"values"<<val3<<endl;
             if(tokens[i+1]=='^')
             {
+
                 int valx=(int)tokens[i+2]-48;
                 char op3= tokens[i+1];
                 int exp =applyOp(cat,valx,op3);
-                if(val3==(int)val3)
+              if(tokens[i-1]==(int)tokens[i-1])
                 {
+                    
+
                     values.push(val3*exp);
 
                 }  
                 else{
-                    values.push(exp);
+                    values.push(cat);
 
-                }
+                } 
+          
                 i=i+2;
 
             }
         else{ 
-            
-                if(val3==(int)val3)
+            // cout<<(val3==(int)val3);
+
+                if(tokens[i-1]==(int)tokens[i-1])
                 {
                     values.push(val3*cat);
 
                 }  
                 else{
-                    values.push(cat*1);
+
+                    values.push(cat);
 
                 } 
           
@@ -92,32 +101,55 @@ int equivalent(string tokens){
         }
          else if(tokens[i]=='y')
          {
-
-            if(tokens[i+1]=='^')
-            {
-               char op3= tokens[i+1];
-               int valz=values.top();
-               values.pop();
-
-               int valx=(int)tokens[i+2]-48;
-                 tokens[i]='1';
-                int cat2;
-                cat2=(int)tokens[i]-48;
-
-               values.push(valz*(applyOp(valx,cat2,op3)));
-                i+2;
-            }
-            else{
-             int val4;
+            
+       int val4;
+          
+                
              val4=values.top();
              values.pop();
-             tokens[i]='1';
-             int cat2;
-             cat2=(int)tokens[i]-48;
-            values.push(cat2*val4);
-            }
+             
+             tokens[i]='2';
+            int cat2;
+            cat2=(int)tokens[i]-48;
 
+                
+            if(tokens[i+1]=='^')
+            {
+
+                int valz=(int)tokens[i+2]-48;
+                char op4= tokens[i+1];
+                int exp2 =applyOp(cat2,valz,op4);
+                cout<<exp2;
+                
+                
+                if(tokens[i-1]=='*')
+                {
+               
+
+                    values.push(exp2);
+
+                }  
+                else{
+                    values.push(val4*exp2);
+
+                }
+                i=i+2;
+
+            }
+        else{ 
+            
+            // cout<<endl<<(val4==(int)val4);
+                
+                if(tokens[i-1]==(int)tokens[i-1])
+                {
+                    values.push(val4*cat2);
+                }  
+                else{
+
+                    values.push(cat2);
+                } 
          }
+ }    
         else if(tokens[i] == ')')
         {
             while(!ops.empty() && ops.top() != '(')
@@ -158,6 +190,7 @@ int equivalent(string tokens){
         ops.pop();
         values.push(applyOp(val1, val2, op));
     }
+
     return values.top();
 }
 int stringdiv(string s)
@@ -182,38 +215,47 @@ int stringdiv(string s)
 }
 int main()
 {
-    fstream f2;
-    string s;
-    printf("enter the file's name ");
-    cin>>s;
 
-    f2.open(s,ios::in);
+  string s ;
 
-    if(f2.is_open()){
-        string p;
-        while(getline(f2,p)){
+cout<<"seperated by space enter 2 algebraic equation\n";
+   cin>>s;
+    stringdiv(s);
+    
+//     fstream f2;
+//     string s;
 
-            stringdiv(p);
+//                                         //  change the name of file from here if required // 
+//    s="test_cases.txt";
 
-        }
-    }
 
-    f2.close();
-    fstream f1;
-    f1.open("out_file.txt",ios::out);
-    if(f1.is_open())
-    {
-        f1<<"kaif khan "<<" "<<"<mail2kaifkhan@gmail.com>\n";
-        for(auto i=bo.begin();i!=bo.end();i++)
-            {
-                if(*i==1)
-                f1<<"true\n";
-                else
-                f1<<"false\n";
+//     f2.open(s,ios::in);
+
+//     if(f2.is_open()){
+//         string p;
+//         while(getline(f2,p)){
+
+//             stringdiv(p);
+
+//         }
+//     }
+
+//     f2.close();
+//     fstream f1;
+//     f1.open("out_file.txt",ios::out);
+//     if(f1.is_open())
+//     {
+//         f1<<"kaif khan "<<" "<<"<mail2kaifkhan@gmail.com>\n";
+//         for(auto i=bo.begin();i!=bo.end();i++)
+//             {
+//                 if(*i==1)
+//                 f1<<"true\n";
+//                 else
+//                 f1<<"false\n";
                 
-            }
-    }
-    f1.close();
+//             }
+//     }
+//     f1.close();
 
 
 }
